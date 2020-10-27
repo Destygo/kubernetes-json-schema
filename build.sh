@@ -24,7 +24,7 @@ function crd_to_json_schema() {
     case "${api_version}" in
       v1beta1)
         crd_version=$(yq read --doc "${document}" "${input}" 'spec.version')
-        if [ -z ${crd_version} ]
+        if [ -z "${crd_version}" ]
         then
           for crd_version in $(yq read --doc "${document}" "${input}" 'spec.versions.*.name'); do
             yq read --doc "${document}" --prettyPrint --tojson "${input}" "spec.validation.openAPIV3Schema" | write_schema "${crd_kind}-${crd_group}-${crd_version}.json"
