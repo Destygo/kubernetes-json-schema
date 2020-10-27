@@ -27,10 +27,10 @@ function crd_to_json_schema() {
         if [ -z ${crd_version} ]
         then
           for crd_version in $(yq read --doc "${document}" "${input}" 'spec.versions.*.name'); do
-            yq read --doc "${document}" --prettyPrint --tojson "${input}" "spec.versions.(name==${crd_version}).schema.openAPIV3Schema" | write_schema "${crd_kind}-${crd_group}-${crd_version}.json"
+            yq read --doc "${document}" --prettyPrint --tojson "${input}" "spec.validation.openAPIV3Schema" | write_schema "${crd_kind}-${crd_group}-${crd_version}.json"
           done
         else
-          yq read --doc "${document}" --prettyPrint --tojson "${input}" spec.validation.openAPIV3Schema | write_schema "${crd_kind}-${crd_group}-${crd_version}.json"
+          yq read --doc "${document}" --prettyPrint --tojson "${input}" "spec.validation.openAPIV3Schema" | write_schema "${crd_kind}-${crd_group}-${crd_version}.json"
         fi
         ;;
 
