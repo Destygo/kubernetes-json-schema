@@ -4,6 +4,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+k8_version="v1.15" # Is used to create a folder named <version>-standalone (and <version>-standalone-strict) because if you pass a specific k8s version to kubeval (-v) it will search for the directory <version>-standalone and not master-standalone
+
 function crd_to_json_schema() {
   local api_version crd_group crd_kind crd_version document input kind
 
@@ -46,6 +48,8 @@ function crd_to_json_schema() {
         ;;
     esac
   done
+  cp master-standalone/ "${k8_version}"-standalone -R
+  cp master-standalone-strict/ "${k8_version}"-standalone-strict -R
 }
 
 function write_schema() {
