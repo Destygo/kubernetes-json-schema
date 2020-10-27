@@ -11,7 +11,7 @@ A repo to host custom resource definitions to be use with `kubeval`. Fixes this 
 4. Validate CRDs:
 
 ```bash
-kubeval --additional-schema-locations https://raw.githubusercontent.com/Destygo/kubernetes-json-schema/master -d .
+kubeval --additional-schema-locations https://raw.githubusercontent.com/Destygo/kubernetes-json-schema/master
 ```
 
 ## Requirements
